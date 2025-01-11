@@ -1,4 +1,4 @@
-# Internet Project
+# Area Project
 
 Este projeto é um conjunto de testes automatizados para um site de comércio eletrônico. Utiliza a linguagem de programação Java e a biblioteca de testes JUnit para garantir a funcionalidade e a estabilidade do site.
 
