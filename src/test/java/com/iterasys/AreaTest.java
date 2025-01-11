@@ -3,6 +3,10 @@ package com.iterasys;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.converter.ConvertWith;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class AreaTest {
 
@@ -11,7 +15,7 @@ public class AreaTest {
 
 
     @Test
-    public void calculaAreaQuadradoTest(){
+    public void calculaAreaQuadrado(){
         float lado = 10;
         float areaEsperada = 100;
 
@@ -47,6 +51,23 @@ public class AreaTest {
         assertEquals(areaEsperada,  areaAtual);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {
+            "5, 5, 25.0",
+            "4, 3, 12.0",
+            "6, 9, 54.0"
+    }, delimiter = ',')
+    public void calculaAreaRetanguloDDT(float base, float altura, float areaEsperada){
 
+        areaAtual = calcularArea.calcularAreaRetangulo(base, altura);
+        assertEquals(areaEsperada, areaAtual);
 
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "csv/triangulo.csv", numLinesToSkip = 1, delimiter = ',')
+    public void calcularAreaTriangulo(float base, float altura, float areaEsperada){
+        areaAtual = calcularArea.calcularAreaTriangulo(base, altura);
+        assertEquals(areaAtual, areaEsperada);
+    }
 }
